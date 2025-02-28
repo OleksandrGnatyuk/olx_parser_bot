@@ -29,12 +29,6 @@ jobs:
       - name: Ensure directory exists
         run: mkdir -p $(dirname csv/all_ad.csv)
 
-      - name: Check file write permissions
-        run: |
-          touch csv/all_ad.csv
-          echo "Write test" >> csv/all_ad.csv
-          cat csv/all_ad.csv
-
       - name: Run script
         run: python main.py
 
