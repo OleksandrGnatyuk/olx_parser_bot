@@ -47,21 +47,18 @@ for items in all_apartments:
 try:
     with open(CSV_FILE_PATH, "r", encoding="utf8") as file:
         reader = csv.reader(file)
-        existing_rows = list(reader)
+        existing_names = {row[1] for row in reader}
 except FileNotFoundError:
-    existing_rows = []
-
+    existing_names = set()
 
 new_ads = []
 
 with open(CSV_FILE_PATH, "a", encoding="utf8", newline="") as file:
     writer = csv.writer(file)
-
     for row in list_of_ap:
-        if row not in existing_rows:
+        if row[1] not in existing_names:
             writer.writerow(row)
             new_ads.append(row)
-
 
 
 def send_telegram_message_anton(message):
