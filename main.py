@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 
 TELEGRAM_BOT_TOKEN = "7393596141:AAGxT554RzqwyNhM6vYs-aEuMD_y4esHIrA"
-TELEGRAM_CHAT_ID = "1758404196"
+TELEGRAM_CHAT_ID = "1002483398546"
 
 
 CSV_FILE_PATH = "csv/all_ad.csv"
