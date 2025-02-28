@@ -1,7 +1,6 @@
 import csv
 import requests
 from bs4 import BeautifulSoup
-import os
 
 TELEGRAM_BOT_TOKEN = "7393596141:AAGxT554RzqwyNhM6vYs-aEuMD_y4esHIrA"
 TELEGRAM_CHAT_ID = "1758404196"
@@ -9,7 +8,6 @@ TELEGRAM_CHAT_ID = "1758404196"
 
 CSV_FILE_PATH = "csv/all_ad.csv"
 
-os.makedirs(os.path.dirname(CSV_FILE_PATH), exist_ok=True)
 
 main_url = "https://www.olx.pl/nieruchomosci/mieszkania/sprzedaz/lodz/?search%5Bfilter_enum_rooms%5D%5B0%5D=two&search%5Bfilter_enum_rooms%5D%5B1%5D=three&search%5Bfilter_float_m%3Afrom%5D=40&search%5Bfilter_float_price%3Afrom%5D=100000&search%5Bfilter_float_price%3Ato%5D=350000&search%5Border%5D=created_at%3Adesc"
 
