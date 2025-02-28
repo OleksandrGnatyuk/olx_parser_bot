@@ -1,6 +1,9 @@
 import csv
 import requests
 from bs4 import BeautifulSoup
+import os
+
+os.makedirs(os.path.dirname(CSV_FILE_PATH), exist_ok=True)
 
 TELEGRAM_BOT_TOKEN = "7393596141:AAGxT554RzqwyNhM6vYs-aEuMD_y4esHIrA"
 TELEGRAM_CHAT_ID = "1758404196"
