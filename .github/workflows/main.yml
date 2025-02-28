@@ -2,8 +2,7 @@ name: Run Python Script
 
 on:
   schedule:
-    - cron: "*/10 * * * *"  
-  workflow_dispatch:
+   - cron: "0,10,20,30,40,50 * * * *"  # Чётко каждые 10 минут  workflow_dispatch:
 
 permissions:
   contents: write
