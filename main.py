@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 TELEGRAM_BOT_TOKEN = "7393596141:AAGxT554RzqwyNhM6vYs-aEuMD_y4esHIrA"
 TELEGRAM_CHAT_ID_VICTOR = "1758404196"
 TELEGRAM_CHAT_ID_ANTON = "662516501"
-
+TELEGRAM_CHAT_ID_IRINA = "795671559"
 CSV_FILE_PATH = "csv/all_ad.csv"
 
 
@@ -82,6 +82,15 @@ def send_telegram_message_victor(message):
     }
     requests.get(telegram_url, params=params)
 
+def send_telegram_message_irina(message):
+    telegram_url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+    params = {
+        "chat_id": TELEGRAM_CHAT_ID_IRINA,
+        "text": message,
+        "parse_mode": "HTML",
+    }
+    requests.get(telegram_url, params=params)
+
 
 
 if new_ads:
@@ -89,7 +98,7 @@ if new_ads:
         msg = f"🏠 <b>{ad[1]}</b>\n📍 {ad[2]}\n💰 {ad[3]}\n📏 {ad[4]}\n⏰ {ad[0]}\n🔗 <a href='{ad[5]}'>Ссылка</a>"
         send_telegram_message_anton(msg)
         send_telegram_message_victor(msg)
-
+        send_telegram_message_irina(msg)
 
     print(f"📨 Отправлено {len(new_ads)} новых объявлений в Telegram!")
 else:
