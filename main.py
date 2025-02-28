@@ -3,8 +3,8 @@ import requests
 from bs4 import BeautifulSoup
 
 TELEGRAM_BOT_TOKEN = "7393596141:AAGxT554RzqwyNhM6vYs-aEuMD_y4esHIrA"
-TELEGRAM_CHAT_ID = "1002483398546"
-
+TELEGRAM_CHAT_ID_VICTOR = "1758404196"
+TELEGRAM_CHAT_ID_ANTON = "662516501"
 
 CSV_FILE_PATH = "csv/all_ad.csv"
 
@@ -64,10 +64,19 @@ with open(CSV_FILE_PATH, "a", encoding="utf8", newline="") as file:
 
 
 
-def send_telegram_message(message):
+def send_telegram_message_anton(message):
     telegram_url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     params = {
-        "chat_id": TELEGRAM_CHAT_ID,
+        "chat_id": TELEGRAM_CHAT_ID_ANTON,
+        "text": message,
+        "parse_mode": "HTML",
+    }
+    requests.get(telegram_url, params=params)
+
+def send_telegram_message_victor(message):
+    telegram_url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+    params = {
+        "chat_id": TELEGRAM_CHAT_ID_VICTOR,
         "text": message,
         "parse_mode": "HTML",
     }
@@ -78,7 +87,9 @@ def send_telegram_message(message):
 if new_ads:
     for ad in new_ads:
         msg = f"🏠 <b>{ad[1]}</b>\n📍 {ad[2]}\n💰 {ad[3]}\n📏 {ad[4]}\n⏰ {ad[0]}\n🔗 <a href='{ad[5]}'>Ссылка</a>"
-        send_telegram_message(msg)
+        send_telegram_message_anton(msg)
+        send_telegram_message_victor(msg)
+
 
     print(f"📨 Отправлено {len(new_ads)} новых объявлений в Telegram!")
 else:
