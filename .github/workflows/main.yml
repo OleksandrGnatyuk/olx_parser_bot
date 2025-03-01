@@ -30,7 +30,13 @@ jobs:
         run: mkdir -p $(dirname csv/all_ad.csv)
 
       - name: Run script
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID_VICTOR: ${{ secrets.TELEGRAM_CHAT_ID_VICTOR }}
+          TELEGRAM_CHAT_ID_ANTON: ${{ secrets.TELEGRAM_CHAT_ID_ANTON }}
+          TELEGRAM_CHAT_ID_IRINA: ${{ secrets.TELEGRAM_CHAT_ID_IRINA }}
         run: python main.py
+
 
       - name: Commit and push changes
         run: |
