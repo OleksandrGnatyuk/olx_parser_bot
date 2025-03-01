@@ -12,8 +12,12 @@ Requirements
 Before running the script, make sure you have the following installed:
 
 Python 3.9
+
+
 requests library for HTTP requests
+
 beautifulsoup4 for parsing HTML
+
 lxml for faster HTML parsing
 
 How it Works
