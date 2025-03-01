@@ -8,13 +8,17 @@ Telegram notifications: Sends new listings as messages to predefined Telegram ch
 Requirements
 Before running the script, make sure you have the following installed:
 
-Python 3.x
+Python 3.9
 requests library for HTTP requests
 beautifulsoup4 for parsing HTML
 lxml for faster HTML parsing
 
 How it Works
+
 Scraping Data: The script sends an HTTP request to OLX, fetching listings for apartments in Łódź that meet the criteria.
+
 Parsing Listings: BeautifulSoup is used to parse the HTML and extract details such as the apartment name, price, size, location, and link.
+
 Storing Listings: The new listings are compared against a previously saved CSV file. If there are new listings, they are appended to the file.
+
 Sending Notifications: For each new listing, the script sends a formatted Telegram message to each specified chat ID, providing details about the apartment and a link to the listing.
