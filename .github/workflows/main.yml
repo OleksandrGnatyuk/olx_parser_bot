@@ -35,6 +35,7 @@ jobs:
           TELEGRAM_CHAT_ID_VICTOR: ${{ secrets.TELEGRAM_CHAT_ID_VICTOR }}
           TELEGRAM_CHAT_ID_ANTON: ${{ secrets.TELEGRAM_CHAT_ID_ANTON }}
           TELEGRAM_CHAT_ID_IRINA: ${{ secrets.TELEGRAM_CHAT_ID_IRINA }}
+          TELEGRAM_CHAT_ID_VICTORIA: ${{ secrets.TELEGRAM_CHAT_ID_VICTORIA }}
         run: python main.py
 
 
