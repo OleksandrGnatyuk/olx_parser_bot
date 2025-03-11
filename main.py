@@ -7,6 +7,7 @@ TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID_VICTOR = os.getenv("TELEGRAM_CHAT_ID_VICTOR")
 TELEGRAM_CHAT_ID_ANTON = os.getenv("TELEGRAM_CHAT_ID_ANTON")
 TELEGRAM_CHAT_ID_IRINA = os.getenv("TELEGRAM_CHAT_ID_IRINA")
+TELEGRAM_CHAT_ID_VICTORIA = os.getenv("TELEGRAM_CHAT_ID_VICTORIA")
 CSV_FILE_PATH = "csv/all_ad.csv"
 
 
@@ -89,6 +90,15 @@ def send_telegram_message_irina(message):
     }
     requests.get(telegram_url, params=params)
 
+def send_telegram_message_victoria(message):
+    telegram_url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+    params = {
+        "chat_id": TELEGRAM_CHAT_ID_VICTORIA,
+        "text": message,
+        "parse_mode": "HTML",
+    }
+    requests.get(telegram_url, params=params)
+
 
 
 if new_ads:
@@ -97,6 +107,7 @@ if new_ads:
         send_telegram_message_anton(msg)
         send_telegram_message_victor(msg)
         send_telegram_message_irina(msg)
+        send_telegram_message_victoria(msg)
 
     print(f"📨 Отправлено {len(new_ads)} новых объявлений в Telegram!")
 else:
