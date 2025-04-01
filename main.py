@@ -26,13 +26,6 @@ urls = [
     ]
 
 
-# # Список проксі для підстановки
-# proxies_list = [
-#     {"http": "http://192.111.130.2:4145", "https": "http://192.111.130.2:4145"},
-#     {"http": "http://176.9.119.170:8080", "https": "http://176.9.119.170:8080"},
-#     {"http": "http://5.135.165.232:3128", "https": "http://5.135.165.232:3128"}
-# ]
-
 # Список User-Agent заголовків для імітації реальних браузерів
 headers_list = [
     {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"},
@@ -59,7 +52,6 @@ def delay():
 
 # Функція для отримання HTML контенту сторінки
 def get_html(url):
-    # proxy = random.choice(proxies_list)  # Випадковий проксі
     headers = random.choice(headers_list)  # Випадковий заголовок
     try:
         response = requests.get(url, headers=headers, timeout=30)
@@ -117,17 +109,18 @@ def parse_page(url):
 
         if new_ads:
             for ad in new_ads:
-                msg = f"🏠 <b>{ad[1]}</b>\n📍 {ad[2]}\n💰 {ad[3]}\n📏 {ad[4]}\n⏰ {ad[0]}\n🔗 <a href='{ad[5]}'>Ссылка</a>"
+                msg = f"🏠 <b>{ad[1]}</b>\n📍 {ad[2]}\n💰 {ad[3]}\n📏 {ad[4]}\n⏰ {ad[0]}\n🔗 <a href='{ad[5]}'>Посилання</a>"
                 send_telegram_message_oleksandr(msg)
-            print(f"📨 Отправлено {len(new_ads)} новых объявлений в Telegram!")
+            print(f"📨 Відправлено {len(new_ads)} нових оголошень в Telegram!")
         else:
-            print("❌ Новых объявлений нет.")
-            send_telegram_message_oleksandr("❌ Новых объявлений нет.")
+            print("❌ Нових оголошень немає.")
+            send_telegram_message_oleksandr("❌ Нових оголошень немає.")
 
     else:
         print(f"Не вдалося отримати контент сторінки: {url}")
 
 
-for url in urls:
-    parse_page(url)
-    delay()  # Викликаємо затримку між запитами
+async def start_parsing():
+    for url in urls:
+        parse_page(url)
+        delay()  # Викликаємо затримку між запитами
