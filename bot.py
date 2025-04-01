@@ -9,7 +9,8 @@ from aiogram import Bot, Dispatcher, F, types
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from aiogram.filters import CommandStart
-from aiogram.webhook.routes import setup_webhook
+# from aiogram.webhook.routes import setup_webhook
+
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
