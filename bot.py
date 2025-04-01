@@ -115,7 +115,6 @@ async def on_shutdown(bot: Bot):
 async def start_command_handler(message: types.Message):
     await message.reply("Бот запущено. Щоденні повідомлення о 13:30 налаштовані!")
 
-
 async def main():
     # Реєструємо функції startup/shutdown
     dp.startup.register(on_startup)
@@ -130,15 +129,15 @@ async def main():
     # Реєструємо обробник для вебхука за вказаним шляхом
     webhook_handler.register(app, path=WEBHOOK_PATH)
 
-    # Встановлюємо вебхук при старті бота
-    await dp.emit_startup()
-
     # Запускаємо веб-сервер
     runner = web.AppRunner(app)
     await runner.setup()
     site = web.TCPSite(runner, host="0.0.0.0", port=int(os.environ.get("PORT", 8080))) # Railway надає порт через змінну оточення PORT
     await site.start()
     logging.info(f"Веб-сервер запущено на порту {os.environ.get('PORT', 8080)}")
+
+    # Встановлюємо вебхук при старті бота (перенесено сюди)
+    await dp.emit_startup() # Спробуємо залишити тут
 
     # Тримаємо застосунок запущеним (замість polling)
     try:
@@ -149,7 +148,6 @@ async def main():
     finally:
         await dp.emit_shutdown()
         await runner.cleanup()
-
 
 if __name__ == "__main__":
     try:
