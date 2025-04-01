@@ -137,7 +137,7 @@ async def main():
     logging.info(f"Веб-сервер запущено на порту {os.environ.get('PORT', 8080)}")
 
     # Встановлюємо вебхук при старті бота (перенесено сюди)
-    await dp.emit_startup() # Спробуємо залишити тут
+    await dp.emit_startup(bot) # Спробуємо залишити тут
 
     # Тримаємо застосунок запущеним (замість polling)
     try:
