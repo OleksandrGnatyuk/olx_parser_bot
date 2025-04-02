@@ -5,25 +5,24 @@ import sys
 
 from dotenv import load_dotenv
 
-from aiogram import Bot, Dispatcher, F, types
+from aiogram import Bot, Dispatcher, types
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from aiogram.filters import CommandStart
-# from aiogram.webhook.routes import setup_webhook
 
-from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
+from aiogram.webhook.aiohttp_server import SimpleRequestHandler
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 
-from main import start_parsing
+from kyiv_rent import start_parsing
 from aiohttp import web
 
 load_dotenv()
 
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID_OLEKSANDR = os.getenv("TELEGRAM_CHAT_ID_OLEKSANDR")
-RAILWAY_PUBLIC_DOMAIN = os.getenv("RAILWAY_PUBLIC_DOMAIN")  # Отримайте URL вашого сервісу на Railway
+RAILWAY_PUBLIC_DOMAIN = os.getenv("RAILWAY_PUBLIC_DOMAIN")
 
 if not BOT_TOKEN:
     logging.critical("Помилка: Не встановлено змінну оточення BOT_TOKEN!")
@@ -114,6 +113,7 @@ async def on_shutdown(bot: Bot):
 @dp.message(CommandStart())
 async def start_command_handler(message: types.Message):
     await message.reply("Бот запущено. Щоденні повідомлення о 13:30 налаштовані!")
+
 
 async def main():
     # Реєструємо функції startup/shutdown
