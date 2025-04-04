@@ -352,19 +352,19 @@ def main():
         save_new_ads_to_csv(CSV_FILE_PATH, new_ads_found)
         logger.info(f"Відправка {len(new_ads_found)} нових оголошень в Telegram...")
         send_telegram_message_oleksandr(f"✅ Знайдено нових оголошень: {len(new_ads_found)}")
-        # for ad in new_ads_found:
-        #     # Формуємо повідомлення з даних словника
-        #     msg = (
-        #         f"🏠 <b>{ad.get('name', 'Без назви')}</b>\n"
-        #         f"📍 {ad.get('location', 'N/A')}\n"
-        #         f"💰 {ad.get('price', 'N/A')}\n"
-        #         f"📏 {ad.get('square', '')}\n" # Якщо square порожній, нічого не виведе
-        #         f"⏰ {ad.get('time', 'N/A')}\n"
-        #         f"🔗 <a href='{ad.get('link')}'>Переглянути на OLX</a>"
-        #     )
-        #     send_telegram_message_oleksandr(msg)
-        #     time.sleep(1) # Невелика затримка між повідомленнями в Telegram
-        # logger.info("📨 Нові оголошення відправлено.")
+        for ad in new_ads_found:
+            # Формуємо повідомлення з даних словника
+            msg = (
+                f"🏠 <b>{ad.get('name', 'Без назви')}</b>\n"
+                f"📍 {ad.get('location', 'N/A')}\n"
+                f"💰 {ad.get('price', 'N/A')}\n"
+                f"📏 {ad.get('square', '')}\n" # Якщо square порожній, нічого не виведе
+                f"⏰ {ad.get('time', 'N/A')}\n"
+                f"🔗 <a href='{ad.get('link')}'>Переглянути на OLX</a>"
+            )
+            send_telegram_message_oleksandr(msg)
+            time.sleep(1) # Невелика затримка між повідомленнями в Telegram
+        logger.info("📨 Нові оголошення відправлено.")
     else:
         logger.info("❌ Нових оголошень немає.")
         send_telegram_message_oleksandr("ℹ️ Нових оголошень не знайдено.")
